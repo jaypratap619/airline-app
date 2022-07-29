@@ -13,6 +13,8 @@ import { FlightSelectComponent } from './home/flight-select/flight-select.compon
 import { AdminComponent } from './admin/admin.component';
 import { AddFlightComponent } from './admin/add-flight/add-flight.component';
 import { DeleteFlightComponent } from './admin/delete-flight/delete-flight.component';
+import { MyBookingsComponent } from './my-bookings/my-bookings.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { DeleteFlightComponent } from './admin/delete-flight/delete-flight.compo
     FlightSelectComponent,
     AdminComponent,
     AddFlightComponent,
-    DeleteFlightComponent
+    DeleteFlightComponent,
+    MyBookingsComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

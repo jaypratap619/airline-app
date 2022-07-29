@@ -1,8 +1,42 @@
-<div class="col-6">
+<div class="col-sm-12 col-md-10 col-lg-6">
     <div class="card mt-5">
-        <div class="card-header">Flight Select</div>
-        <div class="card-body">
-           asdfds
+        <h4  class="card-header">Flight Select</h4>
+        <div class="card-body overflow-auto" style="max-height: 70vh;">
+            <div class="d-flex justify-content-between align-items-center    my-3">
+                <div class="h5">Dehi 	&#8594; Banglore </div>
+                <div class="h6">30 July 2022</div>
+                <button [routerLink]="['/']" class="me-2 btn btn-sm btn-outline-secondary">Modify search</button>
+            </div>
+            <div *ngFor="let x of [1,2,3,4,5]" class="card my-1">
+                <div class="card-body">
+                  <h5 class="card-title">Flight Name</h5>
+                  <div class="row mt-3">
+                    <div class="col">
+                        <h6>From&nbsp;<span class="text-muted">(Delhi)</span></h6>
+                        <p>12:35</p>
+                    </div>
+                    <div class="col">
+                        <h6>To&nbsp;<span class="text-muted">(Banglore)</span></h6>
+                        <p>14:35</p>
+                    </div>
+                    
+                    <div class="col"><h6>Total Duration</h6>
+                        <p>2 hrs </p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                        <h6>Buisness Class&nbsp;<span class="text-success">{{6500 | currency : 'INR'}}</span></h6>
+                        <button type="button" class="btn btn-sm btn-outline-success">Book Now</button>
+                    </div>
+                    <div class="col">
+                        <h6>Economy Class&nbsp;<span class="text-success">{{4500 | currency : 'INR'}}</span></h6>
+                        <button type="button" class="btn btn-sm btn-outline-success">Book Now</button>
+                    </div>
+                    
+                    
+                  </div>
+                </div>
+              </div>
         </div>
     </div>
 </div>
