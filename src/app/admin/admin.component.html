@@ -1,4 +1,22 @@
 <div class="container">
-    <app-add-flight></app-add-flight>
-    <!-- <app-delete-flight></app-delete-flight> -->
+    <div class="card col-sm-6 mx-auto mt-sm-4 p-3" >
+        <ul class="nav  nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#add-flight-pane" type="button" role="tab" aria-controls="add-flight-pane" aria-selected="true">Add a flight</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#cancel-flight-tab-pane" type="button" role="tab" aria-controls="cancel-flight-tab-pane" aria-selected="false">Cancel a flight</button>
+            </li>
+         
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="add-flight-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                <app-add-flight></app-add-flight>
+            </div>
+            <div class="tab-pane fade" id="cancel-flight-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                <app-delete-flight></app-delete-flight>
+            </div>
+          </div>
+          </div>
+        
 </div>

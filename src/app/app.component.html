@@ -1,5 +1,4 @@
 <div class="home-bg">
-
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Skyway Airlines</a>
@@ -23,8 +22,9 @@
     <form class="d-flex" >
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/authentication">
-            <button class="btn btn-sm btn-primary">Login / Sign Up</button>
+          <a class="nav-link">
+            <button (click)="logIn()" *ngIf="isUser == false" class="btn btn-sm btn-primary">Login / Sign Up</button>
+            <button (click)="logOut()" *ngIf="isUser == true" class="btn btn-sm btn-primary">Log Out</button>
           </a>
         </li>
       </ul>

@@ -1,13 +1,24 @@
-<form  class="my-3">
+<form #userLoginForm="ngForm" (ngSubmit)="userLogin(userLoginData)" class="my-3">
   <h5 class="mb-3">Login with existing account</h5>
-    <div>
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email-id">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  <div>
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input [(ngModel)]="userLoginData.email" type="email" name="email" #email="ngModel"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="exampleInputUserEmail"
+      aria-describedby="emailHelp" placeholder="Your email-id" required="">
+    <!-- For Validations -->
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" style="color: red">
+      <div *ngIf="email.errors?.['required']">Email cannot be blank</div>
     </div>
-    <div class="my-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Your password">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="my-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input [(ngModel)]="userLoginData.password" type="password" name="password" #password="ngModel" pattern=".{6,}"
+      class="form-control" id="exampleInputUserPassword" placeholder="Your password" required="">
+    <!-- For Validations -->
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" style="color: red">
+      <div *ngIf="password.errors?.['required']">Password cannot be blank</div>
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-  </form>
+  </div>
+  <button [disabled]="!userLoginForm.valid" type="submit" class="btn btn-primary">Login</button>
+</form>

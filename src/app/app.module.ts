@@ -15,7 +15,8 @@ import { AddFlightComponent } from './admin/add-flight/add-flight.component';
 import { DeleteFlightComponent } from './admin/delete-flight/delete-flight.component';
 import { MyBookingsComponent } from './my-bookings/my-bookings.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,9 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
