@@ -13,7 +13,7 @@
   </div>
   <div class="my-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input [(ngModel)]="userLoginData.password" type="password" name="password" #password="ngModel" pattern=".{6,}"
+    <input [(ngModel)]="userLoginData.password" type="password" name="password" #password="ngModel" pattern=".{8,}"
       class="form-control" id="exampleInputUserPassword" placeholder="Your password" required="">
     <!-- For Validations -->
     <div *ngIf="password.invalid && (password.dirty || password.touched)" style="color: red">

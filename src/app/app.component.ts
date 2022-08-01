@@ -9,15 +9,13 @@ import { Router } from '@angular/router';
 export class AppComponent  {
 
   title = 'airline-app';
-  isUser = localStorage.getItem("currentUser") ? true : false;
-  constructor(private router : Router){}
+  isUserLogged : boolean;
+  constructor(private router : Router){
+    this.isUserLogged = localStorage.getItem("currentUser") ? true : false;
+  }
   
   logOut(){
     window.localStorage.removeItem('currentUser')
-    this.isUser = false;
-  }
-  logIn(){
-    this.router.navigate(['/authentication']);
-    this.isUser = false;
+    this.isUserLogged =false;
   }
 }

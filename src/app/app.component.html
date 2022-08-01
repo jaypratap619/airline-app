@@ -7,7 +7,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <ul [style.visibility]="!isUserLogged? 'hidden': 'visible'" class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
       </li>
@@ -23,8 +23,8 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link">
-            <button (click)="logIn()" *ngIf="isUser == false" class="btn btn-sm btn-primary">Login / Sign Up</button>
-            <button (click)="logOut()" *ngIf="isUser == true" class="btn btn-sm btn-primary">Log Out</button>
+            <button [routerLink]="['/authentication']" *ngIf="isUserLogged == false" class="btn btn-sm btn-primary">Login / Sign Up</button>
+            <button (click)="logOut()" *ngIf="isUserLogged == true" class="btn btn-sm btn-primary">Log Out</button>
           </a>
         </li>
       </ul>

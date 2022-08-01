@@ -12,40 +12,56 @@
     <div class="col-8">
       <label for="fname" class="form-label" >First Name</label>
       <input [(ngModel)]="userSignUpData.firstName" name="firstName" #firstName="ngModel" type="text" class="form-control" id="fname" placeholder="Your first name" required>
+      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" style="color: red">
+        <div *ngIf="firstName.errors?.['required']">First Name cannot be blank</div>
+      </div>
     </div>
   </div>
   
-
-
   <div class="my-3">
     <label for="lname" class="form-label">Last Name</label>
     <input [(ngModel)]="userSignUpData.lastName" name="lastName" #lastName="ngModel" type="text" class="form-control" id="lname" placeholder="Your last name" required>
+    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" style="color: red">
+      <div *ngIf="lastName.errors?.['required']">Last Name cannot be blank</div>
+    </div>
   </div>
 
   <div class="row my-3">
     <div class="col">
       <label for="dob" class="form-label">Date of Birth</label>
       <input [(ngModel)]="userSignUpData.dateOfBirth" name="dateOfBirth" #dateOfBirth="ngModel" type="date" class="form-control" id="dob" required>
+      <div *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)" style="color: red">
+        <div *ngIf="dateOfBirth.errors?.['required']">Date Of Birth cannot be blank</div>
+      </div>
     </div>
     <div class="col">
       <label for="phone" class="form-label">Phone number</label>
       <input [(ngModel)]="userSignUpData.mobile" name="mobile" #mobile="ngModel" type="tel" id="phone" name="phone" placeholder="Your number" pattern="[0-9]{10}" required
         class="form-control" id="phone">
+        <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.hasError('pattern'))" style="color: red">
+          <div *ngIf="mobile.errors?.['required']">mobile number must be of 10 digits</div>
+        </div>
     </div>
   </div>
 
   <div class="my-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <input [(ngModel)]="userSignUpData.emailId" name="emailId" #emailId="ngModel" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email-id" required>
+    <div *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)" style="color: red">
+      <div *ngIf="emailId.errors?.['required']">EmailI Id cannot be blank</div>
+    </div>
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
   <div class="mb-3">
     <label for="userpassword" class="form-label">Password</label>
-    <input [(ngModel)]="userSignUpData.UserPwd" name="UserPwd" #UserPwd="ngModel" type="password" class="form-control" id="userpassword" placeholder="Your password" required>
+    <input [(ngModel)]="userSignUpData.UserPwd" name="UserPwd" #UserPwd="ngModel" type="password" class="form-control" id="userpassword" placeholder="Your password" pattern=".{8,}" required>
+    <div *ngIf="UserPwd.invalid && (UserPwd.dirty || UserPwd.touched)" style="color: red">
+      <div *ngIf="UserPwd.errors?.['required']">Password cannot be blank</div>
+    </div>
   </div>
   <div class="mb-3">
     <label  for="userconfirmpassword" class="form-label">Confirm Password</label>
-    <input [(ngModel)]="cpassword" name="cpassword" type="password" class="form-control" id="userconfirmpassword" placeholder="Repeat Password" required>
+    <input [(ngModel)]="cpassword" name="cpassword" type="password" class="form-control" id="userconfirmpassword" placeholder="Repeat Password" pattern=".{8,}" required>
   </div>
-  <button type="submit" class="btn btn-success">Register</button>
+  <button [disabled]="!userSignUpForm.valid" type="submit" class="btn btn-success">Register</button>
 </form>

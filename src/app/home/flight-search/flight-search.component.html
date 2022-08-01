@@ -2,43 +2,41 @@
     <div class="card mt-5">
         <h4 class="card-header">Flight Search</h4>
         <div class="card-body">
-            <div class="form my-2">
+            <form flightSearchForm="ngForm" (ngSubmit)="searchFlights(flightSearchData)" class="form my-2">
 
-                <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off"
-                    checked>
+                <input (click)="SelectOneWay()" type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off"
+                    [checked]="!isRoundTrip">
                 <label class="btn btn-outline-success me-3" for="success-outlined">One Way</label>
 
-                <input type="radio" class="btn-check" name="options-outlined" id="primary-outlined" autocomplete="off">
+                <input (click)="SelectRoundTrip()" type="radio" class="btn-check" name="options-outlined2" id="primary-outlined" autocomplete="off" [checked]="isRoundTrip">
                 <label class="btn btn-outline-primary" for="primary-outlined">Round Trip</label>
                 <div class="row mt-4">
                     <div class="col">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>From</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select [(ngModel)]="flightSearchData.from" name="from" #from="ngModel" class="form-select" aria-label="Default select example">
+                            <option value="">From</option>
+
+                            <option *ngFor="let city of cities" value="{{city.code}}" >{{city.name}}</option>
+                           
                         </select>
                     </div>
                     <div class="col">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>To</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select [(ngModel)]="flightSearchData.to" name="to" #to="ngModel"  class="form-select" aria-label="Default select example">
+                            <option value="">To</option>
+                            <option  *ngFor="let city of cities" value="{{city.code}}" [hidden]="city.code===flightSearchData.from" >{{city.name}}</option>
                         </select>
                     </div>
                     <div class="row mt-4">
                         <div class="col">
                             <label for="departure-date" class="form-label">Departure Date</label>
-                            <input type="date" class="form-control" id="departure-date" aria-describedby="emailHelp">
+                            <input [(ngModel)]="flightSearchData.departureDate" name="departureDate" #departureDate="ngModel" type="date" class="form-control" id="departure-date" aria-describedby="emailHelp">
                         </div>
                         <div class="col">
                             <label for="departure-date" class="form-label">Return Date</label>
-                            <input type="date" class="form-control" id="departure-date" aria-describedby="emailHelp">
+                            <input [disabled]="!isRoundTrip" [(ngModel)]="flightSearchData.returnDate" name="returnDate" #returnDate="ngModel" type="date" class="form-control" id="departure-date" aria-describedby="emailHelp">
                         </div>
                     </div>
                 </div>
-                <div class="row mt-4">
+                <!-- <div class="row mt-4">
                     <div class="col-4">
                         <label for="passengers" class="form-label">Passengers</label>
                         <select class="form-select" aria-label="Default select example">
@@ -47,11 +45,11 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="text-center mt-4">
-                    <button [routerLink]="['/selectflight']" type="button" class="btn btn-primary">Search</button>
+                    <button [routerLink]="['/selectflight']" (click)="searchFlights(flightSearchData)" type="submit" class="btn btn-primary">Search</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

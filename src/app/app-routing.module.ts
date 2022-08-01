@@ -15,7 +15,7 @@ const routes: Routes = [
       {path: 'selectflight', component: FlightSelectComponent}
     ]
   },
-  { path: 'authentication', component: AuthenticationComponent },
+  { path: 'authentication', component: AuthenticationComponent},
   { path: 'admin', component: AdminComponent },
   { path: 'mybookings', component: MyBookingsComponent },
   { path: 'myprofile', component: MyProfileComponent },
