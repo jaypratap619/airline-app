@@ -17,14 +17,14 @@ export class AuthService {
   loginUser(userLoginData: IUserCredential): Observable<any>{
     console.log(userLoginData);
     return this.httpclient
-      .post<any>(this.url + 'user/login', {"email": userLoginData.email, "password" : userLoginData.password}, this.httpOptions)
+      .post<any>(this.url + 'user/login', {"email": userLoginData.email, "pass" : userLoginData.password}, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
   signUpUser(userData: IUser): Observable<any>{
 
     return this.httpclient
-      .post<any>(this.url + 'user',{
+      .post<any>(this.url + 'user/signUp',{
         "Mobile": userData.mobile,
         "DateOfBirth": userData.dateOfBirth,
         "EmailId": userData.emailId,

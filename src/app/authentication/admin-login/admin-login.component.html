@@ -1,11 +1,24 @@
-<form  class="my-3">
-    <div>
-      <label for="username" class="form-label">username</label>
-      <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="admin username" required>
+<form #adminLoginForm="ngForm" (ngSubmit)="adminLogin(adminLoginData)" class="my-3">
+  <h5 class="mb-3">Login with existing account</h5>
+  <div>
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input [(ngModel)]="adminLoginData.username" type="text" name="adminusername" #adminusername="ngModel"
+      class="form-control" id="exampleInputUserEmail"
+      aria-describedby="emailHelp" placeholder="Admin username" required >
+    <!-- For Validations -->
+    <div *ngIf="adminusername.invalid && (adminusername.dirty || adminusername.touched)" style="color: red">
+      <div *ngIf="adminusername.errors?.['required']">Admin Username cannot be blank</div>
     </div>
-    <div class="mb-3">
-      <label for="adminpassword" class="form-label">Password</label>
-      <input type="password" class="form-control" id="adminpassword" placeholder="admin password" required>
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="my-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input [(ngModel)]="adminLoginData.password" type="password" name="adminpassword" #adminpassword="ngModel" pattern=".{8,}"
+      class="form-control" id="exampleInputUserPassword" placeholder="Your password" required="">
+    <!-- For Validations -->
+    <div *ngIf="adminpassword.invalid && (adminpassword.dirty || adminpassword.touched)" style="color: red">
+      <div *ngIf="adminpassword.errors?.['required']">Admin Password cannot be blank</div>
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-  </form>
+  </div>
+  <button [disabled]="!adminLoginForm.valid" type="submit" class="btn btn-primary">Login</button>
+</form>
