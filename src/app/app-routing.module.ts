@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { FlightBookComponent } from './home/flight-book/flight-book.component';
 import { FlightSearchComponent } from './home/flight-search/flight-search.component';
 import { FlightSelectComponent } from './home/flight-select/flight-select.component';
 import { HomeComponent } from './home/home.component';
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent,
     children: [
       {path: '', component: FlightSearchComponent},
-      {path: 'selectflight', component: FlightSelectComponent}
+      {path: 'selectflight', component: FlightSelectComponent},
+      {path: 'bookflight', component: FlightBookComponent}
     ]
   },
   { path: 'authentication', component: AuthenticationComponent},

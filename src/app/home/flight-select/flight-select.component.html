@@ -1,42 +1,55 @@
-<div class="col-sm-12 col-md-10 col-lg-6">
+<div class="col-sm-12 col-md-12 col-lg-8">
     <div class="card mt-5">
-        <h4  class="card-header">Flight Select</h4>
+        <h4 class="card-header">Flight Select</h4>
         <div class="card-body overflow-auto" style="max-height: 70vh;">
             <div class="d-flex justify-content-between align-items-center    my-3">
-                <div class="h5">Dehi 	&#8594; Banglore </div>
-                <div class="h6">30 July 2022</div>
+                <div class="h5"> {{flights[0].DepCity}} &#8594; {{flights[0].ArrCity}} </div>
+                <div class="h6">{{flights[0].DateOfDept.slice(0,10).split("-").reverse().join("-")}}</div>
                 <button [routerLink]="['/']" class="me-2 btn btn-sm btn-outline-secondary">Modify search</button>
             </div>
-            <div *ngFor="let x of [1,2,3,4,5]" class="card my-1">
+            <div *ngFor="let f of flights" class="card my-3">
                 <div class="card-body">
-                  <h5 class="card-title">Flight Name</h5>
-                  <div class="row mt-3">
-                    <div class="col">
-                        <h6>From&nbsp;<span class="text-muted">(Delhi)</span></h6>
-                        <p>12:35</p>
+                    <h5 class="card-title">{{f.FlightName}}</h5>
+                    <div class="row mt-3">
+                        <div class="col-12 col-md-4">
+                            <h6>From&nbsp;<span class="text-muted">({{f.DepCity}})</span></h6>
+                            <p>Departure Date : {{flights[0].DateOfDept.slice(0,10).split("-").reverse().join("-")}}</p>
+                            <p>Departure Time : {{f.TimeOfDept.slice(0,5)}}</p>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <h6>Total Duration</h6>
+                            <p>{{f.Duration.slice(0,2)}} hours {{f.Duration.slice(3,5)}} mins </p>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <h6>To&nbsp;<span class="text-muted">({{f.ArrCity}})</span></h6>
+                            <p>Arrival Date : {{flights[0].DateOfArr.slice(0,10).split("-").reverse().join("-")}}</p>
+                            <p>Arrival Time : {{f.TimeOfArr.slice(0,5)}}</p>
+                        </div>
+
                     </div>
-                    <div class="col">
-                        <h6>To&nbsp;<span class="text-muted">(Banglore)</span></h6>
-                        <p>14:35</p>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-4">
+                            <h6>Buisness Class&nbsp;</h6>
+                            <p class="text-success mb-0">Price : {{f.PriceBn | currency : 'INR'}}</p>
+                            <p *ngIf="f.SeatsBussiness <10" class="text-danger">{{f.SeatsBussiness}} seats left</p>
+                            <p *ngIf="f.SeatsBussiness >=10 && f.SeatsBussiness <=20" class="text-warning">{{f.SeatsBussiness}} seats left</p>
+                            <p *ngIf="f.SeatsBussiness >20" class="text-success">{{f.SeatsBussiness}} seats left</p>
+                            
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <h6>Economy Class&nbsp;</h6>
+                            <p class="text-success mb-0">Price : {{f.PriceEco | currency : 'INR'}}</p>
+                            <p *ngIf="f.SeatsEco <10" class="text-danger">{{f.SeatsEco}} seats left</p>
+                            <p *ngIf="f.SeatsEco >=10 && f.SeatsEco <=20" class="text-warning">{{f.SeatsEco}} seats left</p>
+                            <p *ngIf="f.SeatsEco >20" class="text-success">{{f.SeatsEco}} seats left</p>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <button (click)="onFlightSelect(f.FlightNumber)" type="button" class="btn btn-sm btn-success">Book Now</button>
+                        </div>
                     </div>
-                    
-                    <div class="col"><h6>Total Duration</h6>
-                        <p>2 hrs </p></div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                        <h6>Buisness Class&nbsp;<span class="text-success">{{6500 | currency : 'INR'}}</span></h6>
-                        <button type="button" class="btn btn-sm btn-outline-success">Book Now</button>
-                    </div>
-                    <div class="col">
-                        <h6>Economy Class&nbsp;<span class="text-success">{{4500 | currency : 'INR'}}</span></h6>
-                        <button type="button" class="btn btn-sm btn-outline-success">Book Now</button>
-                    </div>
-                    
-                    
-                  </div>
+
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 </div>

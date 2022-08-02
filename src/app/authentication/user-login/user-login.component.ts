@@ -18,8 +18,8 @@ export class UserLoginComponent implements OnInit {
   userLogin(userLoginData : IUserCredential){
     this.authservice.loginUser(userLoginData).subscribe((res) => {
       alert('Logged in Successfully');
-      window.localStorage.setItem("currentUser", JSON.stringify(res));
-      this.router.navigate(['/']);
+      window.sessionStorage.setItem("currentUser", JSON.stringify(res));
+      this.router.navigate(['/']).then(()=>{window.location.reload()});
       }
     );
    

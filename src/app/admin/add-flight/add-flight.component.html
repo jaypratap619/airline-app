@@ -1,71 +1,88 @@
 <div class="card p-4 mt-3">
-    
+
     <h5 class="mb-3">Add a flight</h5>
-    <div class="form my-2">
+    <form #addFlightForm="ngForm" (ngSubmit)="addFlight(flightData)" class="form my-2">
         <div class="row mt-4">
             <div class="col-6">
                 <label for="flight-num" class="form-label">Flight Number</label>
-                <input type="text" class="form-control" id="flight-num" aria-describedby="emailHelp" placeholder="Enter Flight Number">
-              </div>
+                <input [(ngModel)]="flightData.FlightNumber" name="FlightNumber" #FlightNumber="ngModel" type="text" class="form-control" id="flight-num" placeholder="Enter Flight Number">
+            </div>
+            <div class="col-6">
+                <label for="airline-name" class="form-label">Airline Name</label>
+                <input [(ngModel)]="flightData.FlightName" name="FlightName" #FlightName="ngModel" type="text" class="form-control" id="airline-name" placeholder="Enter Airline Name">
+            </div>
         </div>
         <div class="row mt-4">
             <div class="col">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>From</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select [(ngModel)]="flightData.DepCity" name="DepCity" #DepCity="ngModel" class="form-select" aria-label="Default select example">
+                    <option value="">From</option>
+
+                    <option *ngFor="let city of cities" value="{{city.code}}" >{{city.name}}</option>
+                   
                 </select>
             </div>
             <div class="col">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>To</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select [(ngModel)]="flightData.ArrCity" name="ArrCity" #ArrCity="ngModel"  class="form-select" aria-label="Default select example">
+                    <option value="">To</option>
+                    <option  *ngFor="let city of cities" value="{{city.code}}" [hidden]="city.code===flightData.DepCity" >{{city.name}}</option>
                 </select>
             </div>
             <div class="row mt-4 pe-0">
                 <div class="col-6">
                     <label for="departure-date" class="form-label">Departure Date</label>
-                    <input type="date" class="form-control" id="departure-date" aria-describedby="emailHelp">
+                    <input [(ngModel)]="flightData.DateOfDept" name="DateOfDept" #DateOfDept="ngModel" type="date" class="form-control" id="departure-date">
                 </div>
                 <div class="col-6">
-                    <label for="departure-date" class="form-label">Return Date</label>
-                    <input type="date" class="form-control" id="departure-date" aria-describedby="emailHelp">
+                    <label for="arrival-date" class="form-label">Arrival Date</label>
+                    <input [(ngModel)]="flightData.DateOfArr" name="DateOfArr" #DateOfArr="ngModel" type="date" class="form-control" id="arrival-date">
+                </div>
+            </div>
+            <div class="row mt-4 pe-0">
+                <div class="col-6">
+                    <label for="departure-time" class="form-label">Departure Time</label>
+                    <input [(ngModel)]="flightData.TimeOfDept" name="TimeOfDept" #TimeOfDept="ngModel" type="time" class="form-control" id="departure-time">
+                </div>
+                <div class="col-6">
+                    <label for="arrival-time" class="form-label">Arrival Time</label>
+                    <input [(ngModel)]="flightData.TimeOfArr" name="TimeOfArr" #TimeOfArr="ngModel" type="time" class="form-control" id="arrival-time">
+                </div>
+                <div style="display: hidden;" class="col-6">
+                    <label for="arrival-time" class="form-label"> Duration</label>
+                    <input [(ngModel)]="flightData.Duration" name="Duration" #Duration="ngModel" type="time" class="form-control" id="arrival-time">
                 </div>
             </div>
         </div>
         <div class="row mt-4">
             <div class="col-6">
-                <label for="passengers" class="form-label">Duration</label>
-                <div class="d-flex align-items-center">
-                    <select class="form-select me-2" aria-label="Default select example">
-                        <option selected value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                    <span>hrs</span>
-                    <select class="form-select mx-2" aria-label="Default select example">
-                        <option selected value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                    <span>mins</span>
+                <label for="buisness-seats" class="form-label">Buisness Class</label>
+                <div class="row">
+                    <div class="col-6">
+                        <input [(ngModel)]="flightData.SeatsBussiness" name="SeatsBussiness" #SeatsBussiness="ngModel" type="number" class="form-control" id="buisness-seats" placeholder="Seats">
+                    </div>
+                    <div class="col-6">
+                        <input [(ngModel)]="flightData.PriceBn" name="PriceBn" #PriceBn="ngModel" type="number" class="form-control" id="buisness-price" placeholder="Price">
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-6">
+                <label for="economy-seats" class="form-label">Economy Class</label>
+                <div class="row">
+                    <div class="col-6">
+                        <input [(ngModel)]="flightData.SeatsEco" name="SeatsEco" #SeatsEco="ngModel" type="number" class="form-control" id="economy-seats" placeholder="Seats">
+                    </div>
+                    <div class="col-6">
+                        <input [(ngModel)]="flightData.PriceEco" name="PriceEco" #PriceEco="ngModel" type="number" class="form-control" id="economy-price" placeholder="Price">
+                    </div>
+
                 </div>
             </div>
 
-            <div class="col-6">
-                <label for="passengers" class="form-label">Cabin</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="1">Type One</option>
-                    <option value="2">Type Two</option>
-                    <option value="3">Type Three</option>
-                </select> 
-            </div>
+
         </div>
+
         <div class="text-center mt-4">
-            <button type="button" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary">Add</button>
         </div>
-    </div>
+    </form>
 </div>

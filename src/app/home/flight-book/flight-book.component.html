@@ -1,0 +1,45 @@
+<div class="col-sm-12 col-md-8 col-lg-6">
+    <div class="card mt-5">
+        <h4 class="card-header">Booking Details</h4>
+        <div class="card-body">
+            <form bookingForm="ngForm" (ngSubmit)="bookFlight(bookingData)" class="form my-2">
+                <div class="row mt-4">
+                    <div class="col">
+                        <label for="totalpassengers" class="form-label">Class</label>
+                        <select [(ngModel)]="bookingData.bookingclass" name="bookingclass" #bookingclass="ngModel" class="form-select" aria-label="Default select example">
+                            <option value="">Select Class</option>
+                            <option value="buisness">Buisness Class</option>
+                            <option value="economy">Economy Class</option>
+                           
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="totalpassengers" class="form-label">Passengers</label>
+                        <!-- <input (change)="onCountChange()" [(ngModel)]="bookingData.passengercount" name="passengercount" #passengercount="ngModel" type="number" class="form-control" id="totalpassengers" placeholder="Number of passengers" min="1" max="5" required> -->
+                        <div class="d-flex mt-1">
+                            <i (click)="removePassengers()" class="bi bi-dash-circle"></i>
+                            <div class="mx-3">{{bookingData.passengercount}}</div>
+                            <i (click)="addPassengers()" class="bi bi-plus-circle"></i>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 h6">Add Passenger details</div>
+                <div *ngFor="let passenger of bookingData.passengers; index as i" class="row mt-4">
+                    <div class="col">
+                        <label for="p-name" class="form-label">Passenger{{i+1}} Name</label>
+                        <input type="text" [(ngModel)]="bookingData.passengers[i].p_name" name="p_name" #p_name="ngModel" class="form-control" id="p-name" placeholder="Enter name" required>
+                    </div>
+                    <div class="col">
+                        <label for="p-age" class="form-label">Passenger{{i+1}} Age</label>
+                        <input type="number" [(ngModel)]="bookingData.passengers[i].p_age" name="p_age" #p_age="ngModel" class="form-control" id="-age" placeholder="Enter age" required>
+                    </div>
+                </div>
+             
+                <div class="text-center mt-4">
+                    <button  type="submit" class="btn btn-success">Book Ticket</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

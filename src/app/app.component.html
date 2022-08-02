@@ -23,8 +23,9 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link">
-            <button [routerLink]="['/authentication']" *ngIf="isUserLogged == false" class="btn btn-sm btn-primary">Login / Sign Up</button>
-            <button (click)="logOut()" *ngIf="isUserLogged == true" class="btn btn-sm btn-primary">Log Out</button>
+            <button [routerLink]="['/authentication']" *ngIf="(isUserLogged == false && isAdminLogged == false)" class="btn btn-sm btn-primary">Login / Sign Up</button>
+            <button (click)="logOutUser()" *ngIf="isUserLogged == true" class="btn btn-sm btn-primary">Log Out</button>
+            <button (click)="logOutAdmin()" *ngIf="isAdminLogged == true" class="btn btn-sm btn-primary">Log Out</button>
           </a>
         </li>
       </ul>

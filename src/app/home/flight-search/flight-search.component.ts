@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FlightService } from 'src/app/services/flight.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class FlightSearchComponent implements OnInit {
     {code: 'DEL', name: 'Delhi'},
     {code: 'CGH', name: 'Chandigarh'},
     {code: 'BOM', name: 'Bombay'},
-    {code: 'MIA', name: 'Miami'},
+    {code: 'CCU', name: 'Kolkata'},
   ]
   isRoundTrip = false;
   flightSearchData: {
@@ -25,7 +26,8 @@ export class FlightSearchComponent implements OnInit {
     departureDate: new Date(),
     returnDate: new Date(),
   };
-  constructor(private flightservice: FlightService) {}
+  filterFilghts = []
+  constructor(private flightservice: FlightService , private router: Router) {}
 
   ngOnInit(): void {}
   SelectOneWay(){
@@ -35,10 +37,9 @@ export class FlightSearchComponent implements OnInit {
     this.isRoundTrip = true;
   }
 
-  searchFlights(flightSearchData: {}) {
+  searchFlights(flightSearchData: any) {
     console.log(flightSearchData)
-    this.flightservice.flightSearch(flightSearchData).subscribe((res)=>{
-      console.log(res);
-    })
+    this.router.navigate(['/selectflight'], { queryParams: flightSearchData})
+    
   }
 }

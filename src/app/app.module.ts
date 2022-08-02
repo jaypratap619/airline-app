@@ -17,6 +17,8 @@ import { MyBookingsComponent } from './my-bookings/my-bookings.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FlightBookComponent } from './home/flight-book/flight-book.component';
+import { AllFlightsComponent } from './admin/all-flights/all-flights.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
     AddFlightComponent,
     DeleteFlightComponent,
     MyBookingsComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    FlightBookComponent,
+    AllFlightsComponent
   ],
   imports: [
     BrowserModule,

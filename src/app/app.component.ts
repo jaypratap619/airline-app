@@ -10,12 +10,20 @@ export class AppComponent  {
 
   title = 'airline-app';
   isUserLogged : boolean;
+  isAdminLogged : boolean;
   constructor(private router : Router){
-    this.isUserLogged = localStorage.getItem("currentUser") ? true : false;
+    this.isUserLogged = sessionStorage.getItem("currentUser") ? true : false;
+    this.isAdminLogged = sessionStorage.getItem("admin") ? true : false;
   }
   
-  logOut(){
-    window.localStorage.removeItem('currentUser')
+  logOutUser(){
+    window.sessionStorage.removeItem('currentUser')
     this.isUserLogged =false;
+    this.router.navigate(['/'])
+  }
+  logOutAdmin(){
+    window.sessionStorage.removeItem('admin')
+    this.isAdminLogged =false;
+    this.router.navigate(['/'])
   }
 }

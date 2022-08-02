@@ -1,15 +1,15 @@
 <div class="card p-4 mt-3">
     
     <h5 class="mb-3">Cancel a flight</h5>
-    <div class="form my-2">
+    <form #flightDeleteForm="ngForm" (ngSubmit)="deleteFlight(FlightDeleteData)" class="form my-2">
         <div class="row mt-4">
             <div class="col-6">
                 <label for="flight-num" class="form-label">Flight Number</label>
-                <input type="text" class="form-control" id="flight-num" aria-describedby="emailHelp" placeholder="Enter Flight Number">
+                <input [(ngModel)]="FlightDeleteData.flightnumber" name="flightnumber" #flightnumber="ngModel" type="text" class="form-control" id="flight-num" placeholder="Enter Flight Number">
               </div>
         </div>
         <div class="text-left mt-4">
-            <button type="button" class="btn btn-danger">Cancel</button>
+            <button type="submit" class="btn btn-danger">Cancel</button>
         </div>
-    </div>
+    </form>
 </div>

@@ -16,8 +16,11 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit(): void {
   }
   adminLogin(adminLoginData : any){
-    if(adminLoginData == "admin" && adminLoginData.password == "admin123")
-      this.router.navigate(['/admin']);
+    console.log(adminLoginData)
+    if(adminLoginData.username == 'admin' && adminLoginData.password == 'admin123'){
+      window.sessionStorage.setItem("admin", "true");
+      this.router.navigate(['/admin']).then(()=>{window.location.reload()});
+    }
       else{
         alert("Invalid credential, Try again!")
       }
