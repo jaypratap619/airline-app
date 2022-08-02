@@ -23,7 +23,7 @@ export class FlightSelectComponent implements OnInit {
 
   onFlightSelect(fnum : string){
     if(sessionStorage.getItem("currentUser")){
-      this.router.navigate(['/bookflight'])
+      this.router.navigate(['/bookflight'], { queryParams: {flightNum : fnum}})
     }
     else{
       alert("Please login to book flights")

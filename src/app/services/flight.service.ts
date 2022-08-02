@@ -13,7 +13,13 @@ export class FlightService {
     headers: new HttpHeaders({ 'content-type': 'application/json' }),
   };
   constructor(private httpclient: HttpClient) {}
+  Passengers : [] = [];
 
+  flightList(): Observable<any>{
+    return this.httpclient
+      .get<any>(this.url + "/getallflights", this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
   flightSearch(flightSearchData: any): Observable<any>{
     console.log(flightSearchData);
     return this.httpclient
@@ -47,6 +53,16 @@ export class FlightService {
       .delete<any>(this.url + '/deleteflight?flightnumber=' + fnum, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
+
+  flightBook(bookingData : any, user:any, flightNumber:any ){
+   
+    return this.httpclient
+      .post<any>("http://localhost:57104/api/ticket/book?Uemail=" + user.EmailId + "&flightnumber=" + flightNumber + "&type=" + bookingData.bookingclass ,
+        bookingData.passengers
+      ,this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+  
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     errorMessage = error.status + '\n' + error.statusText + '\n' + error.error;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-profile',
@@ -7,14 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProfileComponent implements OnInit {
   localItem: string | null = '';
-  user: {} ={};
-  constructor() {}
+  user: any ={};
+  constructor(private router : Router) {}
+  imageSrc = 'assets/avatar.png'  
+   imageAlt = 'avatar'
   ngOnInit(): void {
-    this.localItem = sessionStorage.getItem('currentuser');
+    this.localItem = sessionStorage.getItem('currentUser');
     if (this.localItem == null) this.user = {};
     else {
       this.user = JSON.parse(this.localItem);
-      console.log('user', this.user);
+      console.log('user: ', this.user);
     }
+  }
+  signOut(){
+    window.sessionStorage.removeItem('currentUser')
+    this.router.navigate(['/']).then(()=>{window.location.reload()})
   }
 }

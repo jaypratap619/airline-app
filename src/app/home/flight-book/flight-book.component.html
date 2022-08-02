@@ -28,11 +28,11 @@
                 <div *ngFor="let passenger of bookingData.passengers; index as i" class="row mt-4">
                     <div class="col">
                         <label for="p-name" class="form-label">Passenger{{i+1}} Name</label>
-                        <input type="text" [(ngModel)]="bookingData.passengers[i].p_name" name="p_name" #p_name="ngModel" class="form-control" id="p-name" placeholder="Enter name" required>
+                        <input type="text" [(ngModel)]="bookingData.passengers[i].pname" name="p_name" #p_name="ngModel" class="form-control" id="p-name" placeholder="Enter name" required>
                     </div>
                     <div class="col">
                         <label for="p-age" class="form-label">Passenger{{i+1}} Age</label>
-                        <input type="number" [(ngModel)]="bookingData.passengers[i].p_age" name="p_age" #p_age="ngModel" class="form-control" id="-age" placeholder="Enter age" required>
+                        <input type="number" [(ngModel)]="bookingData.passengers[i].page" name="p_age" #p_age="ngModel" class="form-control" id="-age" placeholder="Enter age" required>
                     </div>
                 </div>
              
