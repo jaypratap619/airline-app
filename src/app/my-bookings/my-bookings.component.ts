@@ -8,6 +8,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./my-bookings.component.css']
 })
 export class MyBookingsComponent implements OnInit {
+  showPassenger : boolean =false;
   localItem: string | null = '';
   user: any ={};
   constructor(private userservice: UserService, private router: Router) { }
@@ -29,5 +30,10 @@ export class MyBookingsComponent implements OnInit {
       this.router.navigate(['/mybookings']).then(()=>window.location.reload());
     })
   }
-
+  onShow(){
+    this.showPassenger=true;
+  }
+  onHide(){
+    this.showPassenger=false;
+  }
 }
